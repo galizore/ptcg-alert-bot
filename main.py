@@ -36,7 +36,8 @@ def check_target_stock(tcin, zip_code):
         return False, "Error checking Target API"
 
 def check_bestbuy_stock(sku, zip_code):
-    url = `https://www.bestbuy.com/site/async/swu/byLocation?skuId={sku}&postalCode={zip_code}`
+    # FIXED: Changed backticks to regular quotes with an f-string
+    url = f"https://www.bestbuy.com/site/async/swu/byLocation?skuId={sku}&postalCode={zip_code}"
     headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
     try:
         res = requests.get(url, headers=headers, timeout=10)
