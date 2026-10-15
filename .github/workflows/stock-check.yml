@@ -3,17 +3,17 @@ name: Pokémon Stock Checker
 on:
   schedule:
     - cron: '*/15 * * * *' # Runs automatically every 15 minutes
-  workflow_dispatch: # Allows you to click a button to test it manually anytime
+  workflow_dispatch: # Allows you to test it manually anytime
 
 jobs:
   check-stock:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v5
         with:
           python-version: '3.10'
 
@@ -21,6 +21,4 @@ jobs:
         run: pip install requests
 
       - name: Run stock checker
-        env:
-          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
         run: python main.py
